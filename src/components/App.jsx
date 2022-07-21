@@ -14,52 +14,10 @@ function App() {
   const [imageQuery, setImageQuery] = useState('');
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
-  // const [isLoader, setIsLoader] = useState(false);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('idle');
   const [showModal, setShowModal] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState('');
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   const {imageQuery, currentPage} = this.state;
-  //   if (prevState.imageQuery !== imageQuery) {
-  //     this.searchImages();
-  //   }
-  //   if (prevState.currentPage < currentPage) {
-  //     this.loadMoreImages(currentPage);
-  //   }
-  // };
-
-  // const loadMoreImages = () => {
-  //   setStatus('pending');
-  //   imagesApi
-  //     .fetch(imageQuery, page)
-  //     .then(images => {
-  //       console.log(images);
-  //       console.log(images.length);
-  //       if (images.length === 0) {
-  //         toast.error('Sorry, there are no more images matching your search query!!!');
-  //         setStatus('idle');
-  //       } else if (images.length < 12) {
-  //         setImages(prevState => [...prevState, ...images]);
-  //         toast.error('Sorry, there are no more images matching your search query!!!');
-  //         setStatus('idle');
-  //       } else {
-  //             setImages(prevState => [...prevState, ...images]);
-  //             setStatus('resolved');
-  //       }
-  //     })
-  //     .catch(error => {
-  //       setError(error);
-  //       setStatus('rejected');
-  //     });
-  // }
-
-//   const searchImages = () => {
-//     setStatus('pending');
-//     setImages([]);
-//     loadMoreImages();
-// };
 
   useEffect(() => {
     if (!imageQuery) {
@@ -96,6 +54,7 @@ function App() {
           setStatus('rejected');
         });
     }
+
     setStatus('pending');
     if (page === 1) {
       searchImages();
@@ -104,14 +63,6 @@ function App() {
     }
 
   }, [page, imageQuery]);
-
-  // useEffect(() => {
-  //   if (!imageQuery) {
-  //     return;
-  //   }
-  //   setStatus('pending');
-
-  // }, [page]);
 
   function handleFormSubmit(imageQuery) {
     setPage(1);
