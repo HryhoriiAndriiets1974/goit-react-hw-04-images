@@ -35,14 +35,12 @@ function App() {
       imagesApi
         .fetch(imageQuery, page)
         .then(images => {
-          console.log(images);
-          console.log(images.length);
           if (images.length === 0) {
             toast.error('Sorry, there are no more images matching your search query!!!');
             setStatus('idle');
           } else if (images.length < 12) {
             setImages(prevState => [...prevState, ...images]);
-            toast.error('Sorry, there are no more images matching your search query!!!');
+            toast.info('Sorry, there are no more images matching your search query!!!');
             setStatus('idle');
           } else {
                 setImages(prevState => [...prevState, ...images]);
